@@ -14,9 +14,10 @@ Reciper Join RecipeProcedure 결과를 받기위한 Bean
  */
 public class RecipeJoinRecipePro {
     //Recipe
-    private int receipeId, bookId, receipeTime, receipeLevel;
-    private String receipeName, Ingredients, ImgContType, WriterId;
-    MultipartFile ImgFileName;
+    private int recipeid, bookid, recipetime, recipelevel;
+    private String recipename, ingredients, imgconttype, writerid;
+//    MultipartFile imgfilename;
+    String imgfilename;
     //RecipeProcedure
     private int seqNum;
     private String procedure;

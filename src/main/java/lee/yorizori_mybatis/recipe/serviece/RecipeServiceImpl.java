@@ -16,8 +16,8 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeMapper recipeMapper;
 
     @Override
-    public void create(Recipe Recipe) {
-        recipeMapper.create(Recipe);
+    public void create(RecipeJoinRecipePro recipeJoinRecipePro) {
+        recipeMapper.create(recipeJoinRecipePro);
     }
 
     @Override

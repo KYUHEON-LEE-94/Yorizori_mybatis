@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class ReciepeProcedure {
-	private int receipeId;
+	private int recipeid;
 	private int seqNum;
 	private String procedure;
 }

@@ -42,6 +42,7 @@
                 <!-- Product name-->
                 <h5 class="fw-bolder" th:text="${cookbook.getBookName()}">요리책 이름</h5>
                 <!-- Product price-->
+                [[${cookbook.bookDesc}]]
                 <th:block th:text="${cookbook.getId()}"></th:block>
               </div>
             </div>
@@ -49,8 +50,9 @@
             <div
               class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" th:href="@{/recipe/detail.do(bookId=${cookbook.getBookId()})}">요리책
+                <a class="btn btn-outline-dark mt-auto" th:href="@{/recipe/detail.do(bookId=${cookbook.getBookId()},loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">요리책
                   상세보기</a>
+
               </div>
             </div>
           </div>

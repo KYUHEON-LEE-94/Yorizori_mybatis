@@ -29,8 +29,14 @@ public class LoginController {
     private UserServiceImpl userService;
 
     @GetMapping("/user/login.do")
-    public String getLogOut(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) {
+    public String getLogOut(@RequestParam(value = "loginid", required = false, defaultValue = "") String loginid,
+                            @RequestParam(value = "loginStat", required = false, defaultValue = "false") boolean loginStat,
+                            HttpServletRequest request,
+                            HttpServletResponse response,
+                            RedirectAttributes redirect) {
+
         Cookie[] cookies = request.getCookies();
+
 
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -40,6 +46,7 @@ public class LoginController {
                     cookie.setPath("/");
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
+
 
                 }
                 if (name.equalsIgnoreCase("saveid")) {

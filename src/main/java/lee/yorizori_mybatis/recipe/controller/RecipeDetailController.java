@@ -25,6 +25,7 @@ public class RecipeDetailController {
     public String doGet(@RequestParam("bookId") int bookId, Model model){
         model.addAttribute("bookId",bookId);
         List<RecipeJoinRecipePro> RecipeAll =  service.findRecipeContents(bookId);
+        log.info("{}",RecipeAll.get(0).getRecipename());
         log.info("{}",RecipeAll);
         model.addAttribute("RecipeAll",RecipeAll);
     return "/views/reciepe/recipeDetail";

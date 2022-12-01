@@ -1,6 +1,7 @@
 package lee.yorizori_mybatis.recipe.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -9,6 +10,7 @@ import lombok.*;
 @ToString
 public class Recipe {
 
-    private int receipeId, bookId, receipeTime, receipeLevel;
-    private String receipeName, Ingredients, ImgContType, ImgFileName, WriterId;
+    private int recipeid, bookid, recipetime, recipelevel;
+    private String recipename, ingredients, imgconttype, writerid; //,imgfilename;
+    MultipartFile imgfilename;
 }

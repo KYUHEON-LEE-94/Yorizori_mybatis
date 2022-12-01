@@ -29,28 +29,26 @@
             class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
       <!-- 레시피 상세 -->
       <table class="table table-bordered border-dark table-light">
-        <th:block th:if="${RecipeAll.isEmpty()}">
+        <th:block th:unless="${RecipeAll.isEmpty()}">
           <!-- book details-->
           <tr>
             <td class="table-active">레시피명</td>
-            <td th:text="${RecipeAll[0].getReceipeName()}"></td>
+            <td th:text="${RecipeAll[0].recipename}"></td>
             <td class="table-active">등록자</td>
-            <td th:text="${RecipeAll[0].getWriterId()}"></td>
+            <td th:text="${RecipeAll[0].writerid}"></td>
 
           </tr>
           <tr>
             <td class="table-active">조리시간</td>
-            <td th:text=>[[${RecipeAll[0].getReceipeTime()}]]분</td>
+            <td>[[${RecipeAll[0].recipetime}]]분</td>
             <td class="table-active">난이도</td>
-            <th:block th:switch="${RecipeAll[0].getReceipeLevel()}">
-              <td th:case="${1}">하</td>
-              <td th:case="${2}">중</td>
-              <td th:case="${3}">상</td>
-            </th:block>
-          </tr>
+              <td th:if="${RecipeAll[0].recipelevel == 1}">하</td>
+              <td th:if="${RecipeAll[0].recipelevel == 2}">중</td>
+              <td th:if="${RecipeAll[0].recipelevel == 3}">상</td>
+
           <tr>
             <td class="table-active">재료</td>
-            <td colspan="3" th:text="${RecipeAll[0].getIngredients()}"></td>
+            <td colspan="3" th:text="${RecipeAll[0].ingredients}"></td>
           </tr>
           <tr>
             <td class="table-active">조리절차</td>
@@ -66,12 +64,14 @@
             <td colspan="3">
               <div class="text-center">
                 <img class="rounded img-thumbnail" style="width: 50rem"
-                     th:src="@{../assets/${RecipeAll[0].imgFileName}}" alt="${RecipeAll[0].imgFileName}"/>
+                     th:src="@{../assets/}+${RecipeAll[0].imgfilename}" th:alt="${RecipeAll[0].imgfilename}"/>
               </div>
             </td>
           </tr>
         </th:block>
-        <th:block th:if="${RecipeAll.isEmpty()}"><h2 style="color:red; width:100%">등록된 레시피가 없습니다.</h2></th:block>
+        <th:block th:if="${RecipeAll.isEmpty()}">
+          <h2 style="color:red; width:100%">등록된 레시피가 없습니다.</h2>
+        </th:block>
       </table>
 
 

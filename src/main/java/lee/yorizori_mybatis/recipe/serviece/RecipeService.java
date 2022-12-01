@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface RecipeService {
-    public void create(Recipe Recipe);
+    public void create(RecipeJoinRecipePro recipeJoinRecipePro);
     public List<Recipe> findAllRecipe(Params params, int id);
     public int recipeCount(int bookid);
 

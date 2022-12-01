@@ -76,20 +76,24 @@ public class RecipeRegistertController {
     }
 
 
+
+
     @PostMapping
-    public String doPost(@ModelAttribute("recipeJoinRecipePro") RecipeJoinRecipePro recipeJoinRecipePro,
+    public String doPost(@ModelAttribute("recipe") Recipe recipe,
                          @RequestParam(value = "procedure", required = false, defaultValue = "") String[] procedure){
 
 
-        MultipartFile getImgName = recipeJoinRecipePro.getImgFileName();
-        String FileName = getImgName.getOriginalFilename();
+
+
+        MultipartFile imgfilename = recipe.getImgfilename();
+        String FileName = recipe.getImgfilename().getOriginalFilename();
         String contentType = null;
 
         try {
-            if (!getImgName.isEmpty()) {
+            if (!imgfilename.isEmpty()) {
                 Path path = Paths.get(location + FileName);
                 contentType = Files.probeContentType(path);
-                getImgName.transferTo(new File(path.toString()));
+                imgfilename.transferTo(new File(path.toString()));
             }
 
         }catch (IOException e){
@@ -100,26 +104,28 @@ public class RecipeRegistertController {
         //recipeID를  넣어주기 위한 PFK 생성
         Random rd = new Random();//랜덤 객체 생성
         int RecipeId = (rd.nextInt(500)+1);
+        RecipeJoinRecipePro recipeJoinRecipePro = new RecipeJoinRecipePro();
 
-        //Form.html에서 recipe + recipeProcedure 요소가 혼합되어있어서 한번에 받을 수 있는 recipeJoinRecipePro로 통째로 받아오고,
-        //여기서 따라 배분해서 생성
-        Recipe recipe = new Recipe();
-        recipe.setIngredients(recipeJoinRecipePro.getIngredients());
-        recipe.setBookId(recipeJoinRecipePro.getBookId());
-        recipe.setWriterId(recipeJoinRecipePro.getWriterId());
-        recipe.setReceipeName(recipeJoinRecipePro.getReceipeName());
-        recipe.setImgFileName(FileName);
-        recipe.setReceipeLevel(recipeJoinRecipePro.getReceipeLevel());
-        recipe.setReceipeTime(recipeJoinRecipePro.getReceipeTime());
-        recipe.setImgContType(contentType);
-        recipe.setReceipeId(RecipeId);
+        //recipeJoinRecipePro는 mybatis와 String mapping을 하기위해서 사용
+            //그렇기 떄문에 service.create()에 recipeJoinRecipePro를 사용해야함 -> recipe객체를 사용하면 setImgfilename()이 Multipartfile 타입이라 mapping되지 못함
+                //Springboot의 Modelattribute 장점을 살리지 못하는게 아쉽지만, 이게 최선의 방법이라고 생각해서 선택
 
-        recipeService.create(recipe);
+        recipeJoinRecipePro.setRecipetime(recipe.getRecipetime());
+        recipeJoinRecipePro.setRecipelevel(recipe.getRecipelevel());
+        recipeJoinRecipePro.setRecipename(recipe.getRecipename());
+        recipeJoinRecipePro.setWriterid(recipe.getWriterid());
+        recipeJoinRecipePro.setImgconttype(contentType);
+        recipeJoinRecipePro.setIngredients(recipe.getIngredients());
+        recipeJoinRecipePro.setBookid(recipe.getBookid());
+        recipeJoinRecipePro.setRecipeid(RecipeId);
+        recipeJoinRecipePro.setImgfilename(FileName);
+        recipeService.create(recipeJoinRecipePro);
+
 
         //procedure가 배열이어서 반복문으로 돌려가면서 등록해줌
         ReciepeProcedure rp = new ReciepeProcedure();
         for(int i = 0; i<procedure.length; i++){
-            rp.setReceipeId(RecipeId);
+            rp.setRecipeid(RecipeId);
             rp.setSeqNum((i+1));
             rp.setProcedure(procedure[0]);
             recipeProcedureService.create(rp);

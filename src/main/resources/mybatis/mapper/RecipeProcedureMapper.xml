@@ -3,9 +3,9 @@
 <mapper namespace="lee.yorizori_mybatis.recipeProcedure.mapper.RecipeProcedureMapper"> <!-- 인터페이스 이름과 일치 -->
 
     <insert id="create" parameterType="ReciepeProcedure">
-        INSERT INTO recipe_procedure(RECIPE_ID, SEQ_NUM, PROCEDURE)
+        INSERT INTO recipe_procedure(RECIPEID, SEQNUM, PROCEDURE)
         VALUES
-            ((SELECT recipe_id FROM recipe WHERE recipe_id = #{receipeId}),
+            ((SELECT recipeid FROM recipe WHERE recipeid = #{recipeid}),
             #{seqNum},
             #{procedure}
             )

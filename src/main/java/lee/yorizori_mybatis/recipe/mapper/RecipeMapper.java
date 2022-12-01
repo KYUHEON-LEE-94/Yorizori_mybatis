@@ -10,9 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface RecipeMapper {
-    public void create(Recipe Recipe);
+    public void create(RecipeJoinRecipePro recipeJoinRecipePro);
     public List<Recipe> findAllRecipe(@Param("params") Params params, @Param("id") int id);
-    public int recipeCount(int bookid);
+    public int recipeCount(int bookId);
 
     public List<RecipeJoinRecipePro> findRecipeContents(int bookid);
 }

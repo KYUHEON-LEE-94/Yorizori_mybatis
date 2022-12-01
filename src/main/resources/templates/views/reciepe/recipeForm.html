@@ -23,24 +23,24 @@
         <form class="row g-3" action="/recipe/register.do" method="post" enctype="multipart/form-data" th:object="${recipe}">
           <div class="col-md-6">
             <label for="receipeName" class="form-label">레시피명</label>
-            <input type="text" class="form-control" th:field="*{receipeName}">
+            <input type="text" class="form-control" th:field="*{recipename}">
           </div>
           <div class="col-md-6">
             <label for="WriterId" class="form-label">등록자 아이디</label>
             <input type="text" class="form-control" th:value="${param.get('writerId')}" disabled>
-            <input type="hidden" th:value="${param.get('writerId')}" th:field="*{writerId}">
+            <input type="hidden" th:value="${param.get('writerId')}" th:field="*{writerid}">
 
             <label for="bookId" class="form-label">쿡북코드</label>
             <input type="text" class="form-control" th:value="${param.get('bookId')}" disabled>
-            <input type="hidden" th:value="${param.get('bookId')}" th:field="${bookId}">
+            <input type="hidden" th:value="${param.get('bookId')}" th:field="*{bookid}">
           </div>
           <div class="col-md-6">
             <label for="receipeTime" class="form-label">조리시간</label>
-            <input type="number" class="form-control" th:field="*{receipeTime}">
+            <input type="number" class="form-control" th:field="*{recipetime}">
           </div>
           <div class="col-md-4">
             <label for="receipeLevel" class="form-label">난이도</label>
-            <select class="form-select" th:field="*{receipeLevel}">
+            <select class="form-select" th:field="*{recipelevel}">
             <option value="3" selected>상</option>
             <option value="2">중</option>
             <option value="1">하</option>
@@ -62,7 +62,7 @@
 
           <div class="col-12">
             <label for="imgFileName" class="form-label">조리사진</label>
-            <input type="file" class="form-control" th:field="*{imgFileName}">
+            <input type="file" class="form-control" th:field="*{imgfilename}">
           </div>
 
           <div class="col-12">

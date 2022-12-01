@@ -33,12 +33,12 @@
         </select>
 
         <select id="MainIndexList" resultType="CookbookMainDto">
-            SELECT id,book_name, book_id, recipe_name, recipe_time, recipe_level, book_desc, img_file_name, regdate
-            FROM ( SELECT CEIL(rownum / 8), s.id,s.book_name, s.book_id, s.recipe_name, s.recipe_time, s.recipe_level, s.book_desc, s.img_file_name, s.regdate
-                   FROM   (SELECT u.id,c.book_name, c.book_id, r.recipe_name, r.recipe_time, r.recipe_level, c.book_desc, r.img_file_name, u.regdate
+            SELECT id,book_name, book_id, recipename, recipetime, recipelevel, book_desc, imgfilename, regdate
+            FROM ( SELECT CEIL(rownum / 8), s.id,s.book_name, s.book_id, s.recipename, s.recipetime, s.recipelevel, s.book_desc, s.imgfilename, s.regdate
+                   FROM   (SELECT u.id,c.book_name, c.book_id, r.recipename, r.recipetime, r.recipelevel, c.book_desc, r.imgfilename, u.regdate
                            FROM cookbook c
-                                    JOIN recipe r ON c.book_id = r.book_id
-                                    JOIN users u ON r.writer_id = u.id)s
+                                    JOIN recipe r ON c.book_id = r.bookid
+                                    JOIN users u ON r.writerid = u.id)s
             ORDER BY regdate)
         </select>
 
