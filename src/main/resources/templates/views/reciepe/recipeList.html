@@ -44,30 +44,30 @@
             <div class="col mb-5">
               <div class="card h-70">
                 <img class="card-img-top"
-                     th:src="@{/assets/}+${Recipe.getImgFileName()}"
-                     th:alt="${Recipe.getImgFileName()}" />
+                     th:src="@{/assets/}+${Recipe.getImgfilename()}"
+                     th:alt="${Recipe.getImgfilename()}" />
                 <!-- 레시피 details-->
                 <div class="card-body p-4">
                   <div class="text-center">
                     <!-- 레시피 name-->
-                    <h5 class="fw-bolder">[[${Recipe.getReceipeName()}]]</h5>
+                    <h5 class="fw-bolder">[[${Recipe.recipename}]]</h5>
                     <!-- 요리시간, 난이도 -->
-                    <th:block th:switch="${Recipe.getReceipeLevel()}">
+                    <th:block th:switch="${Recipe.recipetime}">
                       <th:block th:case="${1}">
-                        <td>[[${RecipeList.recipeTime}]]분 / 난이도: 하</td>
+                        <td>[[${Recipe.recipetime}]]분 / 난이도: 하</td>
                       </th:block>
                       <th:block th:case="${2}">
-                        <td>[[${RecipeList.recipeTime}]]분 / 난이도:중</td>
+                        <td>[[${Recipe.recipetime}]]분 / 난이도:중</td>
                       </th:block>
                       <th:block th:case="${3}">
-                        <td>[[${RecipeList.recipeTime}]]분 / 난이도:상</td>
+                        <td>[[${Recipe.recipetime}]]분 / 난이도:상</td>
                       </th:block>
                     </th:block>
                   </div>
                   <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                     <div class="text-center">
                       <a class="btn btn-md btn-warning"
-                         th:href="@{/recipe/detail.do(bookId=${Recipe.getBookId()})}">요리책
+                         th:href="@{/recipe/detail.do(bookId=${Recipe.bookid})}">요리책
                         상세보기 </a>
                     </div>
                   </div>

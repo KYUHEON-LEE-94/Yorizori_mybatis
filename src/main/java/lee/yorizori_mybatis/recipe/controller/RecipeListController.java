@@ -1,10 +1,10 @@
 package lee.yorizori_mybatis.recipe.controller;
 
-import lee.yorizori_mybatis.common.web.YzRuntimeException;
 import lee.yorizori_mybatis.common.web.page.Page;
 import lee.yorizori_mybatis.common.web.page.Params;
-import lee.yorizori_mybatis.recipe.dto.Recipe;
+import lee.yorizori_mybatis.recipe.dto.RecipeJoinRecipePro;
 import lee.yorizori_mybatis.recipe.serviece.RecipeServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/recipe/recipeList.do")
+@Slf4j
 public class RecipeListController {
     @Autowired
     private RecipeServiceImpl service;
@@ -48,7 +49,8 @@ public class RecipeListController {
         }
 
         Params params = new Params(type, value, pageSize, pageCount, requestPage);
-        List<Recipe> RecipeList = service.findAllRecipe(params, bookId);
+        List<RecipeJoinRecipePro> RecipeList = service.findAllRecipe(params, bookId);
+        log.info("리스트{}",RecipeList);
         model.addAttribute("RecipeList", RecipeList);
         model.addAttribute("params",params);
 

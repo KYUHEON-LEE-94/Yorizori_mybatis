@@ -1,6 +1,7 @@
 package lee.yorizori_mybatis.cookbook.controller;
 
-import lee.yorizori_mybatis.common.web.YzRuntimeException;
+import lee.yorizori_mybatis.common.error.ErrorCode;
+import lee.yorizori_mybatis.common.error.YzRuntimeException;
 import lee.yorizori_mybatis.cookbook.dto.Cookbook;
 import lee.yorizori_mybatis.cookbook.service.CookbookServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +41,7 @@ public class CookbookFormController {
         }
 
         if (loginId == null) {
-            throw new YzRuntimeException("요리책 등록하려면 로그인이 필요합니다.", "/user/loginform.do");
+            throw new YzRuntimeException(ErrorCode.LOGIN_ERROR.getMessage(), "/user/loginform.do");
         } else {
             return "/views/cookbook/cookbookForm";
         }

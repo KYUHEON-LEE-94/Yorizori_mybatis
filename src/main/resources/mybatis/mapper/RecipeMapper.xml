@@ -14,11 +14,11 @@
         </select>
 
         <select id="findAllRecipe" parameterType="params"
-                resultType="Recipe">
+                resultType="RecipeJoinRecipePro">
             SELECT recipeid, bookid, recipename, recipetime, recipelevel, imgconttype, imgfilename, writerid
             FROM ( SELECT CEIL(rownum / #{params.pageSize}) request_page, recipeid, bookid, recipename, recipetime, recipelevel, imgconttype, imgfilename, writerid
                 FROM   ( SELECT recipeid, bookid, recipename, recipetime, recipelevel, imgconttype, imgfilename, writerid
-                FROM recipe WHERE book_id = #{id}))
+                FROM recipe WHERE bookid = #{id}))
             WHERE  request_page = #{params.requestPage}
         </select>
 

@@ -29,33 +29,25 @@ public class LoginController {
     private UserServiceImpl userService;
 
     @GetMapping("/user/login.do")
-    public String getLogOut(@RequestParam(value = "loginid", required = false, defaultValue = "") String loginid,
-                            @RequestParam(value = "loginStat", required = false, defaultValue = "false") boolean loginStat,
+    public String getLogOut(@CookieValue(value = "loginid", required = false, defaultValue = "") Cookie loginid,
+                            @CookieValue(value = "saveid", required = false, defaultValue = "") Cookie saveid,
                             HttpServletRequest request,
                             HttpServletResponse response,
                             RedirectAttributes redirect) {
 
-        Cookie[] cookies = request.getCookies();
+            //Login 쿠키가 있을 경우 경로와 유효기간을 설정해서 바로 로그아웃 시킴
+                if (loginid != null) {
+                    loginid.setPath("/");
+                    loginid.setMaxAge(0);
+                    response.addCookie(new Cookie(loginid.getName(),loginid.getValue()));
 
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                // 쿠키의 이름을 가져와서 비교한다.
-                String name = cookie.getName();
-                if (name.equalsIgnoreCase("loginid")) {
-                    cookie.setPath("/");
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
-
+                    //saveId가 있을 경우 URL에 값을 저장해두고 사용함
+                }
+                if (saveid != null) {
+                    redirect.addAttribute("saveid",saveid.getValue());
 
                 }
-                if (name.equalsIgnoreCase("saveid")) {
-                    redirect.addAttribute("saveid",cookie.getValue());
-
-                }
-            }
-
-        }
         return "redirect:/";
     }
 

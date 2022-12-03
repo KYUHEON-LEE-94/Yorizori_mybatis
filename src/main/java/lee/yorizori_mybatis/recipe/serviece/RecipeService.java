@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface RecipeService {
     public void create(RecipeJoinRecipePro recipeJoinRecipePro);
-    public List<Recipe> findAllRecipe(Params params, int id);
+    public List<RecipeJoinRecipePro> findAllRecipe(Params params, int id);
     public int recipeCount(int bookid);
 
     public List<RecipeJoinRecipePro> findRecipeContents(int bookid);

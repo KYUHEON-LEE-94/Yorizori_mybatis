@@ -21,7 +21,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public List<Recipe> findAllRecipe(Params params, int id) {
+    public List<RecipeJoinRecipePro> findAllRecipe(Params params, int id) {
         return recipeMapper.findAllRecipe(params, id);
     }
 

@@ -56,8 +56,7 @@ class RecipeTest {
         Params params = new Params(type, value, pageSize, pageCount, requestPage);
 
 
-        List<Recipe> list = service.findAllRecipe(params, 24);
-        System.out.println(list);
+        List<RecipeJoinRecipePro> list = service.findAllRecipe(params, 24);
     }
 
     @Test
