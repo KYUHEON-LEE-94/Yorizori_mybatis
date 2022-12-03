@@ -21,6 +21,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+로그인 컨트롤러
+@DoLogout은 쿠키를 확인해서 로그아웃 시킴
+@DoLogin은 DB로 회원가입 여부를 확인하고, !null인 경우 로그인실행
+ */
 @Slf4j
 @Controller
 public class LoginController {
@@ -40,7 +45,6 @@ public class LoginController {
                     loginid.setPath("/");
                     loginid.setMaxAge(0);
                     response.addCookie(new Cookie(loginid.getName(),loginid.getValue()));
-
 
                     //saveId가 있을 경우 URL에 값을 저장해두고 사용함
                 }

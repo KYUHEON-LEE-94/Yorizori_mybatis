@@ -34,9 +34,9 @@
 							<label for="authorId" class="col-sm-2 col-form-label">등록자</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control"
-									   th:value="${param.get('loginId')}" disabled id="book_author">
+									   th:value="${loginId}" disabled id="book_author">
                                   <!-- disabled상태로는 값을 받아올 수 없어서 hidden input으로 받아오기 -->
-                   	            <input type="hidden" th:field="*{authorId}" th:value="${param.get('loginId')}">
+                   	            <input type="hidden" th:field="*{authorId}" th:value="${loginId}">
 							</div>
 						</div>
 

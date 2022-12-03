@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport"
-		  content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Server Error :: Yorizori</title>
 	<style type="text/css">
 		* {margin:0;padding:0;}
@@ -25,7 +25,7 @@
 <div id="error_content">
 	<h2>시스템 장애가 발생하였습니다.<br>관리자(<a href="panpan68@naver.com">panpan68.co.kr</a>)에게 문의바랍니다.</h2>
 	<div class="content">
-		<p style="color: red">[디버깅] : [[${exception.toString()}]]</p>
+		<p style="color: red" th:text="오류가 발생했습니다."></p>
 	</div>
 	<br/>
 	<p>
