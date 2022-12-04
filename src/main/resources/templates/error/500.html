@@ -25,12 +25,12 @@
 <div id="error_content">
 	<h2>시스템 장애가 발생하였습니다.<br>관리자(<a href="panpan68@naver.com">panpan68.co.kr</a>)에게 문의바랍니다.</h2>
 	<div class="content">
-		<p style="color: red" th:text="오류가 발생했습니다."></p>
+		<p style="color: red" th:text="|오류가 발생했습니다.|"></p>
 	</div>
 	<br/>
 	<p>
 		<input type="submit" value="이전 페이지" style="padding: 3px; color: #333333; border: 1px solid #ddd; margin: 5px 5px" onclick="history.back();"/>
-		<input type="button" value="홈 페이지" style="padding: 3px; color: #333333; border: 1px solid #ddd;" onclick="location.href='/index.jsp'"/>
+		<input type="button" value="홈 페이지" style="padding: 3px; color: #333333; border: 1px solid #ddd;" onclick="location.href='/'"/>
 	</p>
 </div>
 </body>

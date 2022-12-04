@@ -3,7 +3,7 @@
 <mapper namespace="lee.yorizori_mybatis.user.mapper.UserMapper"> <!-- 인터페이스 이름과 일치 -->
 	 <insert id="create" parameterType="User">
             INSERT INTO users(id, name, passwd, email)
-            VALUES(#{id}, #{name},#{passwd},#{email})
+            VALUES( #{id}, #{name},#{passwd},#{email})
         </insert>
 
         <select id="findById"

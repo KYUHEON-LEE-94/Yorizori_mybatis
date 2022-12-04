@@ -45,6 +45,8 @@ public class CookbookFormController {
 
     @PostMapping
     public String doPost(@ModelAttribute Cookbook cookbook){
+
+        log.info("쿡붑{}",cookbook);
         cookbookService.create(cookbook);
 
         return "redirect:/";

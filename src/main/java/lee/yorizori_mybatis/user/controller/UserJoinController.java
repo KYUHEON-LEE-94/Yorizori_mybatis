@@ -3,6 +3,7 @@ package lee.yorizori_mybatis.user.controller;
 import lee.yorizori_mybatis.user.dto.User;
 import lee.yorizori_mybatis.user.service.UserServiceImpl;
 import lee.yorizori_mybatis.user.validation.UserValidation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /*
 회원가입 컨트롤러
  */
+@Slf4j
 @Controller
 @RequestMapping("/user/regist.do")
 public class UserJoinController {
@@ -39,12 +41,13 @@ public class UserJoinController {
 
     @PostMapping
     public String doPost(@Validated @ModelAttribute User user,
-                         RedirectAttributes redirect,
-                         BindingResult bindingResult
+                         BindingResult bindingResult,
+                         RedirectAttributes redirect
                          ){
 
         //회원가입 실패시 다시 가입화면으로
         if(bindingResult.hasErrors()){
+            log.info("bindingResult 힝구리뽕뽕 : {}", bindingResult);
             return "/views/user/form";
         }
 
@@ -58,6 +61,10 @@ public class UserJoinController {
         return "redirect:/user/result.do";
 
     }
+
+
+
+
 
 
 }

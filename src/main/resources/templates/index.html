@@ -25,18 +25,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
           <li class="nav-item"><a class="nav-link active"
-                                  aria-current="page" th:href="@{/(loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">홈</a></li>
-          <li class="nav-item"><a class="nav-link" th:href="@{/cookbook/register.do(loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">요리책 등록</a></li>
-          <li class="nav-item"><a class="nav-link" th:href="@{/cookbook/list.do(loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">요리책 목록</a></li>
+                                  aria-current="page" th:text="#{main.home}" th:href="@{/(loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">홈</a></li>
+          <li class="nav-item"><a class="nav-link" th:text="#{main.cookbook.register}" th:href="@{/cookbook/register.do(loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">요리책 등록</a></li>
+          <li class="nav-item"><a class="nav-link" th:text="#{main.cookbook.list}" th:href="@{/cookbook/list.do(loginStat=${param.get('loginStat')}, loginid=${param.get('loginid')})}">요리책 목록</a></li>
         </ul>
 
         <!--/* 로그인 성공했을시 */-->
 
-          <th:block th:if="${param.get('loginStat')}">
+          <th:block th:if="${param.get('loginStat') != null}">
             <div class="col-4">
-              [[${param.get('loginid')}]]님 환영합니다.
+              <th:block th:text="#{nav.login.result(${param.get('loginid')})}"></th:block>
               <button type="button" class="btn btn-danger"
-                      onclick="location.href='/user/login.do'">로그아웃</button>
+                      onclick="location.href='/user/login.do'" th:text="#{main.logout}">로그아웃</button>
             </div>
           </th:block>
         <!--/* 로그인 실패시 */-->
@@ -47,7 +47,7 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="saveid"
                          name="saveid" value="save" checked> <label
-                        class="form-check-label" for="saveid">아이디저장</label>
+                        class="form-check-label" for="saveid" th:text="#{main.saveid}">아이디저장</label>
                 </div>
               </div>
 
@@ -62,10 +62,10 @@
                        placeholder="비밀번호">
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary">로그인</button>
+                <button type="submit" class="btn btn-primary" th:text="#{main.login}">로그인</button>
               </div>
               <div class="col-12">
-                <a th:href="@{/user/regist.do}" class="btn btn-warning">회원가입</a>
+                <a th:href="@{/user/regist.do}" class="btn btn-warning" th:text="#{user.page.title}">회원가입</a>
               </div>
             </form>
           </th:block>

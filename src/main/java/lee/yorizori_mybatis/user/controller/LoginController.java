@@ -44,7 +44,7 @@ public class LoginController {
                 if (loginid != null) {
                     loginid.setPath("/");
                     loginid.setMaxAge(0);
-                    response.addCookie(new Cookie(loginid.getName(),loginid.getValue()));
+                    response.addCookie(loginid);
 
                     //saveId가 있을 경우 URL에 값을 저장해두고 사용함
                 }
