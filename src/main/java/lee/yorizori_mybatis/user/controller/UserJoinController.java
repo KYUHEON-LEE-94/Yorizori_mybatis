@@ -29,15 +29,12 @@ public class UserJoinController {
     @GetMapping
     public String doGet(Model model){
         User user = new User();
-        model.addAttribute("User",user);
+        model.addAttribute("user",user);
 
         return "/views/user/form";
     }
 
-    @InitBinder
-    public void init(WebDataBinder dataBinder) {
-        dataBinder.addValidators(userValidation);
-    }
+
 
     @PostMapping
     public String doPost(@Validated @ModelAttribute User user,
@@ -45,9 +42,11 @@ public class UserJoinController {
                          RedirectAttributes redirect
                          ){
 
+        userValidation.validate(user,bindingResult);
+
         //회원가입 실패시 다시 가입화면으로
         if(bindingResult.hasErrors()){
-            log.info("bindingResult 힝구리뽕뽕 : {}", bindingResult);
+            log.info("bindingResult : {}", bindingResult);
             return "/views/user/form";
         }
 

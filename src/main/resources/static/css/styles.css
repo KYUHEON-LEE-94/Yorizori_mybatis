@@ -1410,6 +1410,7 @@ progress {
   .col-lg-10 {
     flex: 0 0 auto;
     width: 83.33333333%;
+    margin-top: 10px;
   }
 
   .col-lg-11 {
@@ -11285,4 +11286,5 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+
 }

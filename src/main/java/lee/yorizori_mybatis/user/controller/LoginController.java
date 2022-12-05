@@ -34,8 +34,8 @@ public class LoginController {
     private UserServiceImpl userService;
 
     @GetMapping("/user/login.do")
-    public String getLogOut(@CookieValue(value = "loginid", required = false, defaultValue = "") Cookie loginid,
-                            @CookieValue(value = "saveid", required = false, defaultValue = "") Cookie saveid,
+    public String getLogOut(@CookieValue(value = "loginid", required = false) Cookie loginid,
+                            @CookieValue(value = "saveid", required = false) Cookie saveid,
                             HttpServletRequest request,
                             HttpServletResponse response,
                             RedirectAttributes redirect) {
@@ -52,6 +52,7 @@ public class LoginController {
                     redirect.addAttribute("saveid",saveid.getValue());
 
                 }
+
         return "redirect:/";
     }
 
